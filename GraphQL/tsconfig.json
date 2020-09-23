@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2018",
+    "lib": ["es2018", "esnext.asynciterable"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": false,
+    "noUnusedParameters": true,
+    "downlevelIteration": true,
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "project": "./"
+  },
+  "exclude": ["node_modules"]
+}
