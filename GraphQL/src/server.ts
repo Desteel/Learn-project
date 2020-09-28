@@ -1,7 +1,5 @@
 import "reflect-metadata";
-import path from "path";
-import express from "express";
-import { graphqlHTTP } from "express-graphql";
+import { ApolloServer } from "apollo-server";
 import {
   Mutation,
   Resolver,
@@ -78,18 +76,10 @@ async function init() {
       validate: false
     });
 
-    const app = express();
-    app.use(
-      "/graphql",
-      graphqlHTTP({
-        schema,
-        graphiql: true
-      })
-    );
-    app.listen(4000);
-    console.log(
-      "Running a GraphQL API server at http://localhost:4000/graphql"
-    );
+    const server = new ApolloServer({ schema });
+
+    const ServerInfo = await server.listen();
+    console.log(`🚀  Server ready at ${ServerInfo.url}`);
   } catch (error) {
     console.error(error);
   }
