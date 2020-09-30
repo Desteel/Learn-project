@@ -4,7 +4,7 @@ import { createConnection } from "typeorm";
 import { buildSchema } from "type-graphql";
 import UserResolver, { User } from "schemes/Users";
 
-async function init() {
+(async function init() {
   try {
     const schema = await buildSchema({
       resolvers: [UserResolver],
@@ -22,11 +22,10 @@ async function init() {
     });
 
     const server = new ApolloServer({ schema });
-    const ServerInfo = await server.listen(4000);
+    const serverInfo = await server.listen(4000);
 
-    console.log(`🚀  Server ready at ${ServerInfo.url}`);
+    console.log(`🚀  Server ready at ${serverInfo.url}`);
   } catch (error) {
     console.error(error);
   }
-}
-init();
+})();
