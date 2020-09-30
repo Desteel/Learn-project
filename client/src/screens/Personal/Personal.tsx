@@ -1,7 +1,7 @@
 import React from "react";
 
 function Main() {
-  return <div>Main Screen</div>;
+  return <main>Personal Screen</main>;
 }
 
 export default Main;
