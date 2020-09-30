@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": false,
     "target": "es5",
-    "lib": ["esnext", "esnext.asynciterable"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noEmit": false,
-    "noUnusedParameters": true,
-    "downlevelIteration": true,
-    "sourceMap": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
     "baseUrl": "./src",
     "project": "./"
   },
   "include": ["./src"],
-  "exclude": ["node_modules", "./dist", "./dev"]
+  "exclude": ["node_modules", "./dist"]
 }
