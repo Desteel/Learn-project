@@ -1,9 +1,11 @@
 {
+  "name": "server",
   "main": "src/index.ts",
+  "private": true,
   "scripts": {
-    "dev": "webpack --env.development --watch",
+    "start": "webpack --env.development --watch",
     "build": "webpack --env.production",
-    "start": "yarn build && node dist/server.js"
+    "run": "yarn build && node dist/server.js"
   },
   "dependencies": {
     "apollo-server": "^2.18.1",
