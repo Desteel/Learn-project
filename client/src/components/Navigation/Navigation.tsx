@@ -6,7 +6,7 @@ function Navigation() {
   return (
     <nav>
       <ul>
-        <NavigationItem path={NavigationRoutes.Main} title="Main" />
+        <NavigationItem exact path={NavigationRoutes.Main} title="Main" />
         <NavigationItem path={NavigationRoutes.Catalog} title="Catalog" />
         <NavigationItem path={NavigationRoutes.Personal} title="Personal" />
       </ul>
