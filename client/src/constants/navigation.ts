@@ -1,5 +1,6 @@
 export enum NavigationRoutes {
   Main = "/",
   Personal = "/personal",
-  Catalog = "/catalog"
+  Catalog = "/catalog",
+  Account = "/account",
 }
