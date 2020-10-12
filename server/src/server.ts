@@ -1,13 +1,25 @@
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server";
 import { createConnection } from "typeorm";
-import { buildSchema } from "type-graphql";
-import UserResolver, { User } from "schemes/Users";
+import { buildSchema, NonEmptyArray } from "type-graphql";
+import UserResolver, { UserEntity } from "schemes/User";
+import ProductResolver, { ProductEntity } from "schemes/Product";
+import OrderResolver, { OrderEntity } from "schemes/Order";
+import OrderProductResolver, { OrderProductEntity } from "schemes/OrderProduct";
+
+const resolvers: NonEmptyArray<Function> = [
+  UserResolver,
+  ProductResolver,
+  OrderResolver,
+  OrderProductResolver
+];
+
+const entities = [UserEntity, ProductEntity, OrderEntity, OrderProductEntity];
 
 (async function init() {
   try {
     const schema = await buildSchema({
-      resolvers: [UserResolver],
+      resolvers,
       emitSchemaFile: {
         path: "./src/schemes/schema.gql"
       },
@@ -17,7 +29,7 @@ import UserResolver, { User } from "schemes/Users";
     await createConnection({
       type: "sqlite",
       database: "./db.sqlite3",
-      entities: [User],
+      entities,
       synchronize: true
     });
 
