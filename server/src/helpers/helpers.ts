@@ -4,18 +4,22 @@ type UpdateObjectArrayPayload<T> = {
   itemKey: keyof T;
 };
 
-export const updateObjectArray = <T extends Partial<Record<keyof T, unknown>>>({
+export const updateObjectArray = <
+  T extends Partial<Record<keyof T | "id", unknown>>
+>({
   array,
   item,
   itemKey
 }: UpdateObjectArrayPayload<T>) => {
-  const hasItem = array.some(
+  const foundItem = array.find(
     currentItem => currentItem[itemKey] === item[itemKey]
   );
 
-  if (hasItem) {
+  if (foundItem) {
     return array.map(currentItem =>
-      currentItem[itemKey] === item[itemKey] ? item : currentItem
+      currentItem.id === foundItem.id
+        ? { ...item, id: currentItem.id }
+        : currentItem
     );
   } else {
     return [...array, item];
