@@ -1,4 +1,5 @@
 import { Mutation, Resolver, Query, Arg } from "type-graphql";
+import { updateObjectArray } from "helpers";
 import { AddOrderPayload } from "./Order.payloads";
 import OrderEntity from "./Order.entity";
 import { OrderProductEntity, AddOrderProductPayload } from "./OrderProduct";
@@ -18,15 +19,20 @@ class OrderResolver {
   @Mutation(() => OrderEntity)
   async addOrder(
     @Arg("orderData") orderData: AddOrderPayload,
-    @Arg("orderProductsData") orderProductsData: AddOrderProductPayload
+    @Arg("orderProductsData") orderProductData: AddOrderProductPayload
   ): Promise<OrderEntity> {
-    let order = await OrderEntity.findOne(orderData.userId, {
+    let order = await OrderEntity.findOne({
+      where: { userId: orderData.userId },
       relations: ["products"]
     });
-    const orderProduct = OrderProductEntity.create(orderProductsData);
+    const orderProduct = OrderProductEntity.create(orderProductData);
 
     if (order) {
-      order.products.push(orderProduct);
+      order.products = updateObjectArray({
+        array: order.products,
+        item: orderProduct,
+        itemKey: "productId"
+      });
     } else {
       order = OrderEntity.create(orderData);
       order.products = [orderProduct];

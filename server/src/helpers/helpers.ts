@@ -1,3 +1,23 @@
-import crypto from "crypto";
+type UpdateObjectArrayPayload<T> = {
+  array: T[];
+  item: T;
+  itemKey: keyof T;
+};
 
-export const createId = () => crypto.randomBytes(10).toString("hex");
+export const updateObjectArray = <T extends Partial<Record<keyof T, unknown>>>({
+  array,
+  item,
+  itemKey
+}: UpdateObjectArrayPayload<T>) => {
+  const hasItem = array.some(
+    currentItem => currentItem[itemKey] === item[itemKey]
+  );
+
+  if (hasItem) {
+    return array.map(currentItem =>
+      currentItem[itemKey] === item[itemKey] ? item : currentItem
+    );
+  } else {
+    return [...array, item];
+  }
+};
