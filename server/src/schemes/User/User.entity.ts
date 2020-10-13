@@ -13,7 +13,7 @@ export interface User {
 @ObjectType()
 class UserEntity extends BaseEntity implements User {
   @PrimaryGeneratedColumn("uuid")
-  @Field(_type => ID)
+  @Field(() => ID)
   id: string;
 
   @Column()

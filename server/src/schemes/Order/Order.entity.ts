@@ -16,11 +16,11 @@ export interface Order {
 @ObjectType()
 class OrderEntity extends BaseEntity implements Order {
   @PrimaryGeneratedColumn("uuid")
-  @Field(_type => ID)
+  @Field(() => ID)
   id: string;
 
   @PrimaryColumn()
-  @Field(_type => ID)
+  @Field()
   userId: string;
 
   @OneToMany(() => OrderProductEntity, product => product.order, {

@@ -23,11 +23,11 @@ export interface OrderProduct {
 @ObjectType()
 class OrderProductEntity extends BaseEntity implements OrderProduct {
   @PrimaryGeneratedColumn("uuid")
-  @Field(_type => ID)
+  @Field(() => ID)
   id: string;
 
   @PrimaryColumn()
-  @Field(_type => ID, { description: "The id of the original product" })
+  @Field({ description: "The id of the original product" })
   productId: string;
 
   @Column()

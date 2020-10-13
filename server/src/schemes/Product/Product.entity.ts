@@ -16,7 +16,7 @@ export interface Product {
 @ObjectType()
 class ProductEntity extends BaseEntity implements Product {
   @PrimaryGeneratedColumn("uuid")
-  @Field(_type => ID)
+  @Field(() => ID)
   id: string;
 
   @Column()
