@@ -2,16 +2,14 @@ import "reflect-metadata";
 import { ApolloServer } from "apollo-server";
 import { createConnection } from "typeorm";
 import { buildSchema, NonEmptyArray } from "type-graphql";
-import UserResolver, { UserEntity } from "schemes/User";
-import ProductResolver, { ProductEntity } from "schemes/Product";
-import OrderResolver, { OrderEntity } from "schemes/Order";
-import OrderProductResolver, { OrderProductEntity } from "schemes/OrderProduct";
+import { UserResolver, UserEntity } from "schemes/User";
+import { ProductResolver, ProductEntity } from "schemes/Product";
+import { OrderResolver, OrderEntity, OrderProductEntity } from "schemes/Order";
 
 const resolvers: NonEmptyArray<Function> = [
   UserResolver,
   ProductResolver,
-  OrderResolver,
-  OrderProductResolver
+  OrderResolver
 ];
 
 const entities = [UserEntity, ProductEntity, OrderEntity, OrderProductEntity];

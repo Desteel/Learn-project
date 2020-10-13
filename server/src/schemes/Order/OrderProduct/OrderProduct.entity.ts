@@ -7,7 +7,7 @@ import {
   Column,
   ManyToOne
 } from "typeorm";
-import { OrderEntity } from "../Order";
+import OrderEntity from "../Order.entity";
 
 export interface OrderProduct {
   productId: string;
