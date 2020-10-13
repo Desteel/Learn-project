@@ -3,22 +3,112 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-input AddUserInput {
+input AddOrderPayload {
+  userId: String!
+}
+
+input AddOrderProductPayload {
+  date: String!
+  discount: Float!
+  isPaid: Boolean!
+  isShipped: Boolean!
+  productId: String!
+  quantity: Float!
+}
+
+input AddProductPayload {
+  content: String!
+  description: String!
+  discount: Int
+  manufacturer: String!
   name: String!
+  price: Int!
+  quantity: Int!
+}
+
+input AddUserPayload {
+  email: String!
+  name: String!
+  phone: Int
+  subscriber: String
 }
 
 type Mutation {
-  addUser(data: AddUserInput!): User!
+  addOrder(orderData: AddOrderPayload!, orderProductsData: AddOrderProductPayload!): OrderEntity!
+  addProduct(data: AddProductPayload!): ProductEntity!
+  addUser(data: AddUserPayload!): UserEntity!
+}
+
+type OrderEntity {
+  products: [OrderProductEntity!]!
+  userId: ID!
+}
+
+type OrderProductEntity {
+  """The date added"""
+  date: String!
+
+  """The discount percent"""
+  discount: Int
+  id: ID!
+
+  """Is paid"""
+  isPaid: Boolean
+
+  """Is shipped"""
+  isShipped: Boolean
+
+  """The id of the original product"""
+  productId: ID!
+
+  """The quantity"""
+  quantity: Float!
+}
+
+type ProductEntity {
+  """The content"""
+  content: String!
+
+  """The description"""
+  description: String!
+
+  """The discount"""
+  discount: Int
+  id: ID!
+
+  """The manufacturer"""
+  manufacturer: String!
+
+  """The name of the product"""
+  name: String!
+
+  """The price"""
+  price: Int!
+
+  """The quantity"""
+  quantity: Int!
 }
 
 type Query {
-  user(id: String): User!
-  users: [User!]!
+  order(userId: String!): OrderEntity!
+  orders: [OrderEntity!]!
+  product(id: String!): ProductEntity!
+  products: [ProductEntity!]!
+  user(id: String!): UserEntity!
+  users: [UserEntity!]!
 }
 
-type User {
+type UserEntity {
+  """The email of the user"""
+  email: String!
   id: ID!
 
   """The name of the user"""
   name: String!
+
+  """The phone of the user"""
+  phone: Int
+
+  """The email of the user"""
+  subscriber: String
 }

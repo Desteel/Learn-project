@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import { Entity, BaseEntity, PrimaryColumn, OneToMany } from "typeorm";
-import { OrderProductEntity } from "../OrderProduct";
+import { OrderProductEntity } from "./OrderProduct";
 
 export interface Order {
   userId: string;
@@ -13,7 +13,9 @@ class OrderEntity extends BaseEntity implements Order {
   @Field(_type => ID)
   userId: string;
 
-  @OneToMany(() => OrderProductEntity, product => product.order)
+  @OneToMany(() => OrderProductEntity, product => product.order, {
+    cascade: ["insert"]
+  })
   @Field(() => [OrderProductEntity])
   products: OrderProductEntity[];
 }
