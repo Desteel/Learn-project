@@ -42,7 +42,7 @@ type Mutation {
 type OrderEntity {
   id: ID!
   products: [OrderProductEntity!]!
-  userId: ID!
+  userId: String!
 }
 
 type OrderProductEntity {
@@ -60,7 +60,7 @@ type OrderProductEntity {
   isShipped: Boolean
 
   """The id of the original product"""
-  productId: ID!
+  productId: String!
 
   """The quantity"""
   quantity: Float!

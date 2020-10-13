@@ -43,7 +43,7 @@ class ProductEntity extends BaseEntity implements Product {
   @Field(() => Int, { description: "The price" })
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   @Field(() => Int, { description: "The discount", nullable: true })
   discount?: number;
 }

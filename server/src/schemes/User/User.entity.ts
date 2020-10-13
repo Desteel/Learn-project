@@ -24,11 +24,11 @@ class UserEntity extends BaseEntity implements User {
   @Field({ description: "The email of the user" })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   @Field(() => Int, { description: "The phone of the user", nullable: true })
   phone?: number;
 
-  @Column()
+  @Column({ nullable: true })
   @Field({ description: "The email of the user", nullable: true })
   subscriber?: string;
 }
