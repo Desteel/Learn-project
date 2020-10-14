@@ -39,16 +39,16 @@ class OrderProductEntity extends BaseEntity implements OrderProduct {
   quantity: number;
 
   @Column()
-  @Field(() => Int, { description: "The discount percent", defaultValue: 0 })
-  discount?: number;
+  @Field(() => Int, { description: "The discount percent" })
+  discount: number;
 
   @Column()
-  @Field(() => Boolean, { description: "Is paid", defaultValue: false })
-  isPaid?: boolean;
+  @Field(() => Boolean, { description: "Is paid" })
+  isPaid: boolean;
 
   @Column()
-  @Field(() => Boolean, { description: "Is shipped", defaultValue: false })
-  isShipped?: boolean;
+  @Field(() => Boolean, { description: "Is shipped" })
+  isShipped: boolean;
 
   @ManyToOne(() => OrderEntity, order => order.products)
   order: OrderEntity;

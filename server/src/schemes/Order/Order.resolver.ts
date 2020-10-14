@@ -1,20 +1,17 @@
 import { Mutation, Resolver, Query, Arg } from "type-graphql";
-import { updateObjectArray } from "helpers";
-import { AddOrderPayload } from "./Order.payloads";
-import OrderEntity from "./Order.entity";
+import { NotExistingOrder, NotExistingOrderProduct } from "constants/messages";
 import { OrderProductEntity, AddOrderProductPayload } from "./OrderProduct";
-
-const PRODUCT_ID = "productId";
+import OrderEntity from "./Order.entity";
 
 @Resolver()
 class OrderResolver {
   @Query(() => [OrderEntity])
-  orders() {
+  findOrders() {
     return OrderEntity.find();
   }
 
   @Query(() => OrderEntity)
-  order(@Arg("userId") userId: string) {
+  findOrder(@Arg("userId") userId: string) {
     return OrderEntity.findOne({
       where: { userId }
     });
@@ -22,24 +19,43 @@ class OrderResolver {
 
   @Mutation(() => OrderEntity)
   async addOrder(
-    @Arg("orderData") orderData: AddOrderPayload,
-    @Arg("orderProductsData") orderProductData: AddOrderProductPayload
+    @Arg("userId") userId: string,
+    @Arg("product") product: AddOrderProductPayload
   ): Promise<OrderEntity> {
-    let order = await OrderEntity.findOne({
-      where: { userId: orderData.userId }
-    });
-    const orderProduct = OrderProductEntity.create(orderProductData);
+    let order = await this.findOrder(userId);
+    const orderProduct = OrderProductEntity.create(product);
 
     if (order) {
-      order.products = updateObjectArray({
-        array: order.products,
-        item: orderProduct,
-        itemKey: PRODUCT_ID
-      });
+      order.products.push(orderProduct);
     } else {
-      order = OrderEntity.create(orderData);
+      order = OrderEntity.create({ userId });
       order.products = [orderProduct];
     }
+
+    return await order.save();
+  }
+
+  @Mutation(() => OrderEntity)
+  async updateOrder(
+    @Arg("userId") userId: string,
+    @Arg("product") productData: AddOrderProductPayload
+  ): Promise<OrderEntity> {
+    const order = await this.findOrder(userId);
+
+    if (!order) {
+      throw new Error(NotExistingOrder);
+    }
+
+    const { products } = order;
+    const productIndex = products.findIndex(
+      ({ productId }) => productId === productData.productId
+    );
+
+    if (productIndex < 0) {
+      throw new Error(NotExistingOrderProduct);
+    }
+
+    products[productIndex] = Object.assign(products[productIndex], productData);
 
     return await order.save();
   }

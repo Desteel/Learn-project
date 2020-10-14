@@ -3,15 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-input AddOrderPayload {
-  userId: String!
-}
-
 input AddOrderProductPayload {
   date: String!
-  discount: Float!
-  isPaid: Boolean!
-  isShipped: Boolean!
+  discount: Float = 0
+  isPaid: Boolean = false
+  isShipped: Boolean = false
   productId: String!
   quantity: Float!
 }
@@ -34,9 +30,10 @@ input AddUserPayload {
 }
 
 type Mutation {
-  addOrder(orderData: AddOrderPayload!, orderProductsData: AddOrderProductPayload!): OrderEntity!
+  addOrder(product: AddOrderProductPayload!, userId: String!): OrderEntity!
   addProduct(data: AddProductPayload!): ProductEntity!
   addUser(data: AddUserPayload!): UserEntity!
+  updateOrder(product: AddOrderProductPayload!, userId: String!): OrderEntity!
 }
 
 type OrderEntity {
@@ -50,14 +47,14 @@ type OrderProductEntity {
   date: String!
 
   """The discount percent"""
-  discount: Int
+  discount: Int!
   id: ID!
 
   """Is paid"""
-  isPaid: Boolean
+  isPaid: Boolean!
 
   """Is shipped"""
-  isShipped: Boolean
+  isShipped: Boolean!
 
   """The id of the original product"""
   productId: String!
@@ -91,8 +88,8 @@ type ProductEntity {
 }
 
 type Query {
-  order(userId: String!): OrderEntity!
-  orders: [OrderEntity!]!
+  findOrder(userId: String!): OrderEntity!
+  findOrders: [OrderEntity!]!
   product(id: String!): ProductEntity!
   products: [ProductEntity!]!
   user(id: String!): UserEntity!

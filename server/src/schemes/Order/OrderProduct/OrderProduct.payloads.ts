@@ -12,12 +12,12 @@ export class AddOrderProductPayload implements OrderProduct {
   @Field()
   quantity: number;
 
-  @Field()
+  @Field({ defaultValue: 0 })
   discount?: number;
 
-  @Field()
+  @Field({ defaultValue: false })
   isPaid?: boolean;
 
-  @Field()
+  @Field({ defaultValue: false })
   isShipped?: boolean;
 }
