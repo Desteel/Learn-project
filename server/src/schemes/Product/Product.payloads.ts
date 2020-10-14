@@ -18,9 +18,9 @@ export class AddProductPayload implements Product {
   @Field()
   content: string;
 
-  @Field(() => Int)
+  @Field()
   price: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field({ defaultValue: 0 })
   discount?: number;
 }

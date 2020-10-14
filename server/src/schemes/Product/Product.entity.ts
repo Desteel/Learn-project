@@ -40,12 +40,12 @@ class ProductEntity extends BaseEntity implements Product {
   content: string;
 
   @Column()
-  @Field(() => Int, { description: "The price" })
+  @Field({ description: "The price" })
   price: number;
 
-  @Column({ nullable: true })
-  @Field(() => Int, { description: "The discount", nullable: true })
-  discount?: number;
+  @Column()
+  @Field({ description: "The discount" })
+  discount: number;
 }
 
 export default ProductEntity;

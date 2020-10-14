@@ -15,10 +15,10 @@ input AddOrderProductPayload {
 input AddProductPayload {
   content: String!
   description: String!
-  discount: Int
+  discount: Float = 0
   manufacturer: String!
   name: String!
-  price: Int!
+  price: Float!
   quantity: Int!
 }
 
@@ -71,7 +71,7 @@ type ProductEntity {
   description: String!
 
   """The discount"""
-  discount: Int
+  discount: Float!
   id: ID!
 
   """The manufacturer"""
@@ -81,7 +81,7 @@ type ProductEntity {
   name: String!
 
   """The price"""
-  price: Int!
+  price: Float!
 
   """The quantity"""
   quantity: Int!
