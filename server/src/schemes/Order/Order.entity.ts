@@ -24,6 +24,7 @@ class OrderEntity extends BaseEntity implements Order {
   userId: string;
 
   @OneToMany(() => OrderProductEntity, product => product.order, {
+    eager: true,
     cascade: true
   })
   @Field(() => [OrderProductEntity])

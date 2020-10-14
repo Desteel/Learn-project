@@ -4,21 +4,19 @@ import { AddOrderPayload } from "./Order.payloads";
 import OrderEntity from "./Order.entity";
 import { OrderProductEntity, AddOrderProductPayload } from "./OrderProduct";
 
-const ORDER_RELATIONS = ["products"];
 const PRODUCT_ID = "productId";
 
 @Resolver()
 class OrderResolver {
   @Query(() => [OrderEntity])
   orders() {
-    return OrderEntity.find({ relations: ORDER_RELATIONS });
+    return OrderEntity.find();
   }
 
   @Query(() => OrderEntity)
   order(@Arg("userId") userId: string) {
     return OrderEntity.findOne({
-      where: { userId },
-      relations: ORDER_RELATIONS
+      where: { userId }
     });
   }
 
@@ -28,8 +26,7 @@ class OrderResolver {
     @Arg("orderProductsData") orderProductData: AddOrderProductPayload
   ): Promise<OrderEntity> {
     let order = await OrderEntity.findOne({
-      where: { userId: orderData.userId },
-      relations: ORDER_RELATIONS
+      where: { userId: orderData.userId }
     });
     const orderProduct = OrderProductEntity.create(orderProductData);
 
