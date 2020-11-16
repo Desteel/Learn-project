@@ -16,7 +16,12 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": "./src",
-    "project": "./"
+    "project": "./",
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
   "include": ["./src"],
   "exclude": ["node_modules", "./dist"]
