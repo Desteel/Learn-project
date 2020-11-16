@@ -1,5 +1,9 @@
 {
-  "extends": "react-app",
+  "extends": [
+    "react-app",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
   "overrides": [
     {
       "files": ["**/*.ts?(x)"],
@@ -28,5 +32,8 @@
         ]
       }
     }
-  ]
+  ],
+  "rules": {
+    "no-case-declarations": "error"
+  }
 }
