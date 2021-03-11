@@ -6,16 +6,16 @@ const NavigationItems = [
   {
     path: NavigationRoutes.Main,
     title: "Main",
-    exact: true
+    exact: true,
   },
   {
     path: NavigationRoutes.Catalog,
-    title: "Catalog"
+    title: "Catalog",
   },
   {
     path: NavigationRoutes.Personal,
-    title: "Personal"
-  }
+    title: "Personal",
+  },
 ];
 
 function Navigation() {

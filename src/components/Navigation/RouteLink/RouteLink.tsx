@@ -11,7 +11,7 @@ type RouteLinkProps = {
 function RouteLink({ path, title, exact }: RouteLinkProps) {
   let match = useRouteMatch({
     path,
-    exact
+    exact,
   });
 
   return (

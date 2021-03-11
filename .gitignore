@@ -19,5 +19,3 @@ coverage/
 dist/
 dev/
 build/
-
-server/db.sqlite3

@@ -1,32 +1,65 @@
 {
-  "name": "learnproject",
-  "version": "0.0.1",
-  "description": "",
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "install": "yarn --cwd ./server install && yarn --cwd ./client install",
-    "server:start": "yarn --cwd ./server start",
-    "server:build": "yarn --cwd ./server build",
-    "server:run": "yarn --cwd ./server run",
-    "client:start": "yarn --cwd ./client start",
-    "client:build": "yarn --cwd ./client build",
-    "client:test": "yarn --cwd ./client test",
-    "client:ttab:start": "ttab yarn client:start",
-    "client:ttab:build": "ttab yarn client:build",
-    "start": "run-p server:start client:ttab:start",
-    "build": "run-p server:build client:ttab:build"
+    "start:all": "run-p server ttab:start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "server": "json-server --watch db.json --port 3001",
+    "ttab:start": "ttab yarn start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Desteel/Learn-project.git"
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "styled-components": "^5.2.0",
+    "styled-normalize": "^8.0.7",
+    "typescript": "~3.7.2"
   },
-  "author": "Dest",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Desteel/Learn-project/issues"
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.4",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^4.3.0",
+    "json-server": "^0.16.3",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "typescript-styled-plugin": "^0.15.0"
   },
-  "homepage": "https://github.com/Desteel/Learn-project#readme",
   "optionalDependencies": {
     "npm-run-all": "^4.1.5",
     "ttab": "^0.7.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
