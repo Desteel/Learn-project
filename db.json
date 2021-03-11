@@ -1,19 +1,31 @@
 {
-  "posts": [
+  "products": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "id": "1",
+      "title": "Cyberpunk 2077 Johnny Silverhand (Ver. 2) Action Figure",
+      "by": "McFarlane Toys",
+      "brand": "Cyberpunk",
+      "status": "pre-order",
+      "estimated": "March 2021",
+      "quantity": 100,
+      "grades": {
+        "collector": 2,
+        "standard": 24.99,
+        "Substandard": null
+      },
+      "description": "McFarlane's Johnny Silverhand figure features him wearing his iconic outfit from the Cyberpunk 2077 video game. This figure has been designed with ultra articulation and features 22 moving parts. The 7-inch scale figure comes witha Base, Malorian Gun, and a Duffle Bag with Atomic Bomb. This figure comes packaged in a Cyberpunk 2077-themed window box.",
+      "features": [
+        "7 inch (17.78cm) scale",
+        "Made of plastic",
+        "Based on the video game Cyberpunk 2077",
+        "Designed with ultra articulation and features 22 moving parts"
+      ],
+      "contents": [
+        "Johnny Silverhand figure",
+        "Base",
+        "Malorian gun",
+        "Duffle bag with atomic bomb"
+      ]
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
